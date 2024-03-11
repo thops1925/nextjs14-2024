@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: next132024
+    ports:
+      - '3000:3000' # Corrected port mapping
+    volumes:
+      - './node_modules:/app/node_modules' # Corrected volume mapping
