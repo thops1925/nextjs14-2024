@@ -1,13 +1,14 @@
-import { url } from 'inspector'
 import { NextResponse } from 'next/server'
 
 const isLogin: boolean = false
 
 export function middleware (request: Request) {
-  if (!isLogin && request.url === 'http://localhost:3000/profile') {
-    return NextResponse.redirect(new URL('/', request.url))
+  if (isLogin) {
+    return NextResponse.next()
   }
-  return NextResponse.next()
+  return NextResponse.redirect(new URL('/', request.url))
 }
 
-export const config = {}
+export const config = {
+  matcher: ['/profile/:path*']
+}
