@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const isLogin: boolean = false
+const isLogin: boolean = true
 
 export function middleware (request: NextRequest) {
   let cookies = new Headers(request.headers)
-  console.log(cookies)
   if (isLogin) {
     return NextResponse.next()
   }

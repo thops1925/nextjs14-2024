@@ -7,10 +7,11 @@ const profileId = () => {
   const params = useParams()
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter()
+  console.log(router)
   return (
     <div>
       <h1>{params.profileID}</h1>
-      <button onClick={() => router.push('/profile')}>back</button>
+      <button onClick={() => router.push('/')}>back</button>
     </div>
   )
 }
