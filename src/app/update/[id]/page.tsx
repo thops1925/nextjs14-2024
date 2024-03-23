@@ -2,13 +2,13 @@ async function getUpDateById ({ params, searchParams }: any) {
   try {
     const id = params.id
     const response = await fetch(`${process.env.URL}/api/comment/${id}`)
-    const data = await response.json()
+    const { user } = await response.json()
 
-    if (!data) {
+    if (!user) {
       console.error('Post not found')
     }
     return {
-      data,
+      user,
       status: response.status
     }
   } catch (error) {
@@ -21,12 +21,20 @@ async function getUpDateById ({ params, searchParams }: any) {
 }
 
 export default async function UpdateId ({ params, searchParams }: any) {
-  const { data } = await getUpDateById({ params, searchParams })
+  const { user } = await getUpDateById({ params, searchParams })
   return (
     <div>
       page
-      <h1>{data.user.name}</h1>
-      <h1>{data.user.age}</h1>
+      {user ? (
+        <div>
+          <h1>{user.name}</h1>
+          <h1>{user.age}</h1>
+        </div>
+      ) : (
+        <div>
+          <h1>Post not found</h1>
+        </div>
+      )}
     </div>
   )
 }
